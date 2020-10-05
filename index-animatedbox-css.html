@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Animated Box CSS</title>
+	<style type="text/css">
+		*{margin:0;padding: 0;box-sizing: border-box;}
+		body{overflow: hidden;height: 100vh;background-color: #000;}
+		section{height: 100vh}
+		span{position: absolute;pointer-events: none;background-color: #fff;animation: animate 5s linear infinite}
+		@keyframes animate {
+			0%{
+				opacity: 0;
+				transform: scale(0) translateY(0) rotate(0deg);
+			}
+			33%{
+				opacity: 1;
+			}
+			66%{
+				opacity: 1;
+			}
+			100%{
+				opacity: 0;
+				transform: scale(1) translateY(-500px) rotate(360deg);
+			}
+		}
+	</style>
+</head>
+<body>
+	<section>
+		
+	</section>
+	<script>
+		function createSquare(){
+			const section = document.querySelector('section');
+			const square  = document.createElement('span');
+
+			const colors = ['#DD5044','#17A05D','#FFCE45','#4D8CF4']
+
+			// const bg = colors[Math.floor(Math.random()*colors.length)];
+			// square.style.background = bg;
+
+			var colorCode = '#' + Math.floor( Math.random() * 16777215 ).toString( 16 )
+			square.style.background = colorCode;
+
+
+			var size = Math.random() * 50;
+
+			square.style.width  = 20 + size + "px";
+			square.style.height = 20 + size + "px";
+
+			square.style.top  = Math.random() * innerHeight + "px";
+			square.style.left = Math.random() * innerWidth + "px";
+
+			section.appendChild(square);
+
+			setTimeout(()=>{
+				square.remove();
+			}, 5000)
+		}
+
+		setInterval(createSquare, 150);
+	</script>
+</body>
+</html>
